@@ -1,0 +1,706 @@
+<?xml version="1.0"?>
+
+<!-- ########################################
+
+ # Aerostar super 700 
+ # December 2014 : Modified by PAF team
+ # http://equipe-flightgear.forumactif.com
+
+##########################################-->
+
+<PropertyList>
+
+    <fx>
+<!-- Engine 1 -->
+    <crank>
+        <name>engstart1</name>
+        <mode>once</mode>
+        <path>Sounds/coughing.wav</path>
+        <property>engines/engine[0]/running</property>
+        <reference-dist>5.0</reference-dist>
+        <max-dist>10.0</max-dist>
+        <position>
+            <x>0.5</x>
+            <y>-1.8</y>
+            <z>0.2</z>
+        </position>
+        <volume>
+            <property>sim/sound/cabin-volume</property>
+        </volume>
+    </crank>
+
+    <crank>
+        <name>crank1</name>
+        <mode>looped</mode>
+        <path>Sounds/cranking.wav</path>
+        <condition>
+            <property>engines/engine[0]/cranking</property>
+            <not>
+                <property>engines/engine[0]/running</property>
+            </not>
+        </condition>
+        <reference-dist>5.0</reference-dist>
+        <max-dist>10.0</max-dist>
+        <position>
+            <x>0.5</x>
+            <y>-1.8</y>
+            <z>0.2</z>
+        </position>
+        <volume>
+            <property>sim/sound/cabin-volume</property>
+        </volume>
+    </crank>
+
+    <engine>
+        <name>engine1</name>
+        <mode>looped</mode>
+        <path>Aircraft/Aerostar-700/Sounds/lycoming.wav</path>
+        <condition>
+            <equals>
+                <property>engines/engine[0]/running</property>
+                <value>1</value>
+            </equals>
+        </condition>
+        <reference-dist>100.0</reference-dist>
+        <max-dist>500.0</max-dist>
+        <position>
+            <x>0.5</x>
+            <y>-1.8</y>
+            <z>0.2</z>
+        </position>
+        <volume>
+            <property>engines/engine[0]/mp-inhg</property>
+           <factor>0.023</factor>
+            <min>0.4</min>
+            <max>1.0</max>
+        </volume>
+        <volume>
+            <property>sim/sound/cabin-volume</property>
+        </volume>
+        <pitch>
+            <property>engines/engine[0]/mp-inhg</property>
+            <factor>0.014</factor>
+            <offset>0.4</offset>
+        </pitch>
+    </engine>
+
+<!-- Engine 2 -->
+
+    <crank>
+        <name>engstart2</name>
+        <path>Sounds/coughing.wav</path>
+        <property>engines/engine[1]/running</property>
+        <reference-dist>5.0</reference-dist>
+        <max-dist>10.0</max-dist>
+        <position>
+            <x>0.5</x>
+            <y>1.8</y>
+            <z>0.2</z>
+        </position>
+        <volume>
+            <property>sim/sound/cabin-volume</property>
+        </volume>
+    </crank>
+
+    <crank>
+        <name>crank2</name>
+        <mode>looped</mode>
+        <path>Sounds/cranking.wav</path>
+        <condition>
+            <property>engines/engine[1]/cranking</property>
+            <not>
+                <property>engines/engine[1]/running</property>
+            </not>
+        </condition>
+        <reference-dist>5.0</reference-dist>
+        <max-dist>10.0</max-dist>
+        <position>
+            <x>0.5</x>
+            <y>1.8</y>
+            <z>0.2</z>
+        </position>
+        <volume>
+            <property>sim/sound/cabin-volume</property>
+        </volume>
+    </crank>
+
+    <engine>
+        <name>engine2</name>
+        <mode>looped</mode>
+        <path>Aircraft/Aerostar-700/Sounds/lycoming.wav</path>
+        <condition>
+            <equals>
+                <property>engines/engine[1]/running</property>
+                <value>1</value>
+            </equals>
+        </condition>
+        <reference-dist>100.0</reference-dist>
+        <max-dist>500.0</max-dist>
+        <position>
+            <x>0.5</x>
+            <y>1.8</y>
+            <z>0.2</z>
+        </position>
+        <volume>
+            <property>engines/engine[1]/mp-inhg</property>
+            <factor>0.023</factor>
+            <min>0.4</min>
+            <max>1.0</max>
+        </volume>
+        <volume>
+            <property>sim/sound/cabin-volume</property>
+        </volume>
+        <pitch>
+            <property>engines/engine[1]/mp-inhg</property>
+            <factor>0.014</factor>
+            <offset>0.4</offset>
+        </pitch>
+    </engine>
+
+  
+    <rumble>
+        <name>rumble</name>
+        <mode>looped</mode>
+        <path>Sounds/rumble.wav</path>
+        <position>
+            <x>0.0</x>
+            <y>0.0</y>
+            <z>-0.5</z>
+        </position>
+        <condition>
+            <or>
+                <property>gear/gear[0]/wow</property>
+                <property>gear/gear[1]/wow</property>
+                <property>gear/gear[2]/wow</property>
+            </or>
+        </condition>
+        <reference-dist>1.0</reference-dist>
+        <max-dist>5.0</max-dist>
+        <volume>
+            <property>velocities/groundspeed-kt</property>
+            <factor>0.05</factor>
+        </volume>
+    </rumble>
+
+    <gear>
+        <name>gear</name>
+        <mode>in-transit</mode>
+        <path>Aircraft/Aerostar-700/Sounds/gear.wav</path>
+        <property>gear/gear[0]/position-norm</property>
+        <position>
+            <x>0.0</x>
+            <y>0.0</y>
+            <z>-0.5</z>
+        </position>
+        <volume>
+            <property>sim/sound/cabin-volume</property>
+        </volume>
+        <pitch>
+            <internal>dt_play</internal>
+            <offset>0.8</offset>
+            <factor>-0.001</factor>
+        </pitch>
+        <reference-dist>1.0</reference-dist>
+        <max-dist>2.0</max-dist>
+    </gear>
+ 
+    <gear>
+        <name>gear-lock</name>
+        <path>Sounds/gear-lck.wav</path>
+        <condition>
+            <equals>
+                <property>gear/gear[0]/position-norm</property>
+                <value>0</value>
+            </equals>
+        </condition>
+        <position>
+            <x>0.0</x>
+            <y>0.0</y>
+            <z>-0.5</z>
+        </position>
+        <volume>
+            <property>sim/sound/cabin-volume</property>
+        </volume>
+        <reference-dist>5.0</reference-dist>
+        <max-dist>10.0</max-dist>
+    </gear>
+
+    <squeal>
+        <name>squeal</name>
+        <path>Aircraft/Aerostar-700/Sounds/chirp.wav</path>
+        <reference-dist>10.0</reference-dist>
+        <max-dist>20</max-dist>
+        <condition>
+            <or>
+                <property>gear/gear[0]/wow</property>
+                <property>gear/gear[1]/wow</property>
+                <property>gear/gear[2]/wow</property>
+            </or>
+        </condition>
+        <position>
+            <x>0.0</x>
+            <y>0.0</y>
+            <z>-0.5</z>
+        </position>
+        <volume>
+            <property>velocities/airspeed-kt</property>
+            <factor>0.01</factor>
+        </volume>
+        <volume>
+            <internal>dt_stop</internal>
+            <factor>0.05</factor>
+            <max>1.0</max>
+        </volume>
+        <pitch>
+            <property>velocities/airspeed-kt</property>
+            <factor>0.0025</factor>
+            <offset>1.2</offset>
+        </pitch>
+    </squeal>
+ 
+    <flap>
+        <name>flaps</name>
+        <mode>in-transit</mode>
+        <path>Sounds/flaps.wav</path>
+        <property>surface-positions/flap-pos-norm</property>
+        <position>
+            <x>-0.3</x>
+            <y>0.0</y>
+            <z>-0.0</z>
+        </position>
+        <volume>
+            <factor>0.45</factor>
+        </volume>
+        <reference-dist>2.0</reference-dist>
+        <max-dist>2.0</max-dist>
+    </flap>
+
+<!-- Click -->
+
+        <click>
+            <name>click-on</name>
+            <mode>once</mode>
+            <path>Sounds/click.wav</path>
+            <condition>
+                <property>sim/sound/click</property>
+            </condition>
+            <volume>
+                <property>sim/signals/fdm-initialized</property>
+            </volume>
+            <pitch>
+                <offset>1.0</offset>
+            </pitch>
+            <position>
+                <x>3</x>
+                <y>0</y>
+                <z>1</z>
+            </position>
+            <reference-dist>0.5</reference-dist>
+            <max-dist>1.0</max-dist>
+        </click>
+        
+        <click>
+            <name>click-off</name>
+            <mode>once</mode>
+            <path>Sounds/click.wav</path>
+            <condition>
+                <not>
+                    <property>sim/sound/click</property>
+                </not>
+            </condition>
+            <volume>
+                <property>sim/signals/fdm-initialized</property>
+            </volume>
+            <pitch>
+                <offset>0.8</offset>
+            </pitch>
+            <position>
+                <x>3</x>
+                <y>0</y>
+                <z>1</z>
+            </position>
+            <reference-dist>0.5</reference-dist>
+            <max-dist>1.0</max-dist>
+        </click>
+
+<!-- Fuel pump -->
+
+    <pump>
+      <name>L-fuel-pump</name>
+      <mode>once</mode>
+      <path>Aircraft/Aerostar-700/Sounds/fuel-pump.wav</path>
+      <condition>
+        <greater-than>
+          <property>/controls/fuel/tank/boost-pump</property>
+          <value>0</value>
+        </greater-than>
+      </condition>    
+     <!-- <volume>
+        <factor>2.0</factor>
+      </volume>
+      <reference-dist>100</reference-dist>
+      <max-dist>1000</max-dist> -->
+     <orientation>
+         <x>0.0</x>
+         <y>0.0</y>
+         <z>180.0</z>
+            <inner-angle>180.0</inner-angle>
+               <outer-angle>360.0</outer-angle>
+                <outer-gain>0.2</outer-gain>
+     </orientation>
+    <volume>
+          <property>sim/current-view/internal</property>
+    <offset>1</offset>
+         <factor>-0.2</factor>
+   </volume>     
+    </pump>
+
+    <pump>
+      <name>R-fuel-pump</name>
+      <mode>once</mode>
+      <path>Aircraft/Aerostar-700/Sounds/fuel-pump.wav</path>
+      <condition>
+        <greater-than>
+          <property>/controls/fuel/tank[1]/boost-pump</property>
+          <value>0</value>
+        </greater-than>
+      </condition>    
+      <volume>
+        <factor>2.0</factor>
+      </volume>
+      <reference-dist>100</reference-dist>
+      <max-dist>1000</max-dist>      
+    </pump>
+
+<!-- Radio -->
+
+   <radio>
+      <name>sound-radio-inside</name>
+      <mode>looped</mode>
+      <path>Aircraft/Aerostar-700/Sounds/radio-5s.wav</path>
+        <condition>
+            <and>
+                <equals>
+                    <property>instrumentation/comm/serviceable</property>
+                    <value>true</value>
+                </equals>
+                <greater-than>
+                    <property>systems/electrical/outputs/comm[0]</property>
+                    <value>1</value>
+                </greater-than>
+          <property>instrumentation/comm/ptt</property>
+          <value>0</value>
+            </and>
+        </condition>
+      <volume>
+        <factor>1</factor>
+      </volume>
+      <reference-dist>100</reference-dist>
+      <max-dist>1000</max-dist>
+    </radio>
+
+
+    <!-- Cabin Door -->
+
+        <doors>
+            <name>lfdoor-open</name>
+            <mode>once</mode>
+            <path>Aircraft/Aerostar-700/Sounds/door_close.wav</path>
+            <condition>
+                <greater-than>
+                    <property>/controls/cabin-door/position-norm</property>
+                    <value>0.1</value>
+                </greater-than>
+            </condition>
+            <volume>
+                <property>sim/signals/fdm-initialized</property>
+                <factor>1</factor>
+            </volume>
+            <position>
+                <x>-3</x>
+                <y>0.5</y>
+                <z>0.5</z>
+            </position>
+            <reference-dist>0.5</reference-dist>
+            <max-dist>2.0</max-dist>
+        </doors>
+
+        <doors>
+            <name>lfdoor-closed</name>
+            <mode>once</mode>
+            <path>Aircraft/Aerostar-700/Sounds/door_closed.wav</path>
+            <condition>
+                <not>
+                    <property>/controls/cabin-door/position-norm</property>
+                    <value>0.2</value>
+                </not>
+            </condition>
+            <volume>
+                <property>sim/signals/fdm-initialized</property>
+                <factor>1</factor>
+            </volume>
+            <position>
+                <x>-3</x>
+                <y>0.5</y>
+                <z>0.5</z>
+            </position>
+            <reference-dist>0.5</reference-dist>
+            <max-dist>2.0</max-dist>
+        </doors>
+
+<!-- CABIN TABLES -->
+
+        <table>
+            <name>table-open</name>
+            <mode>once</mode>
+            <path>Aircraft/Aerostar-700/Sounds/door_closed.wav</path>
+                    <property>/controls/cabin/table</property>
+                    <value>1</value>
+            <volume>
+                <property>sim/signals/fdm-initialized</property>
+                <factor>1</factor>
+            </volume>
+            <position>
+                <x> 3.0 </x>
+                <y> 0.5 </y>
+                <z> 0.5 </z>
+            </position>
+            <reference-dist> 0.5 </reference-dist>
+            <max-dist> 2.0 </max-dist>
+        </table>
+
+        <tablette1>
+            <name>tablette1-open</name>
+            <mode>once</mode>
+            <path>Aircraft/Aerostar-700/Sounds/door_closed.wav</path>
+                    <property>/controls/cabin/tablette1</property>
+                    <value>1</value>
+            <volume>
+                <property>sim/signals/fdm-initialized</property>
+                <factor>1</factor>
+            </volume>
+            <position>
+                <x>  3.0 </x>
+                <y> -2.0 </y>
+                <z>  0.5 </z>
+            </position>
+            <reference-dist> 0.5 </reference-dist>
+            <max-dist> 2.0 </max-dist>
+        </tablette1>
+
+        <tablette2>
+            <name>tablette2-open</name>
+            <mode>once</mode>
+            <path>Aircraft/Aerostar-700/Sounds/door_closed.wav</path>
+                    <property>/controls/cabin/tablette2</property>
+                    <value>1</value>
+            <volume>
+                <property>sim/signals/fdm-initialized</property>
+                <factor>1</factor>
+            </volume>
+            <position>
+                <x> 3.0 </x>
+                <y> 2.0 </y>
+                <z> 0.5 </z>
+            </position>
+            <reference-dist> 0.5 </reference-dist>
+            <max-dist> 2.0 </max-dist>
+        </tablette2>
+
+                <!-- ALARMES -->
+ 
+<!--Right Generator-->
+       
+    <stall>
+      <name>Alarme-Rgen</name>
+      <mode>looped</mode>
+      <path>Aircraft/Aerostar-700/Sounds/alarm.wav</path>
+        <condition>
+			<and>
+				<not>
+					<property>instrumentation/annunciators/alarm-ack03</property>
+				</not>
+				<or>
+					<property>instrumentation/annunciators/indicator03</property>
+					<property>instrumentation/annunciators/test-btn</property>
+				</or>
+			</and>				
+		</condition>			
+      <volume>
+        <factor>1.0</factor>
+      </volume>
+      <reference-dist>100</reference-dist>
+           <max-dist>1000</max-dist>      
+    </stall>
+ 
+<!--Left Generator-->
+    
+    <stall>
+      <name>Alarme-Lgen</name>
+      <mode>looped</mode>
+      <path>Aircraft/Aerostar-700/Sounds/alarm.wav</path>
+        <condition>
+			<and>
+				<not>
+					<property>instrumentation/annunciators/alarm-ack04</property>
+				</not>
+				<or>
+					<property>instrumentation/annunciators/indicator04</property>
+					<property>instrumentation/annunciators/test-btn</property>
+				</or>
+			</and>				
+		</condition>			
+      <volume>
+        <factor>1.0</factor>
+      </volume>
+      <reference-dist>100</reference-dist>
+           <max-dist>1000</max-dist>      
+    </stall>
+ 
+<!--Alarme R-oil-press-->
+                                                                              
+    <stall>
+      <name>Alarme-Roil</name>
+      <mode>looped</mode>
+      <path>Aircraft/Aerostar-700/Sounds/alarm.wav</path>
+        <condition>
+			<and>
+				<not>
+					<property>instrumentation/annunciators/alarm-ack05</property>
+				</not>
+				<or>
+					<property>instrumentation/annunciators/indicator05</property>
+					<property>instrumentation/annunciators/test-btn</property>
+				</or>
+			</and>				
+		</condition>			
+      <volume>
+        <factor>1.0</factor>
+      </volume>
+      <reference-dist>100</reference-dist>
+           <max-dist>1000</max-dist>      
+    </stall>
+
+<!--Alarme L-oil-press-->
+                                                                            
+    <stall>
+      <name>Alarme-Loil</name>
+      <mode>looped</mode>
+      <path>Aircraft/Aerostar-700/Sounds/alarm.wav</path>
+        <condition>
+			<and>
+				<not>
+					<property>instrumentation/annunciators/alarm-ack06</property>
+				</not>
+				<or>
+					<property>instrumentation/annunciators/indicator06</property>
+					<property>instrumentation/annunciators/test-btn</property>
+				</or>
+			</and>				
+		</condition>			
+      <volume>
+        <factor>1.0</factor>
+      </volume>
+      <reference-dist>100</reference-dist>
+           <max-dist>1000</max-dist>      
+    </stall>
+
+    <!-- Alarme Low fuel -->
+
+    <stall>
+      <name>Alarme-fuel</name>
+      <mode>looped</mode>
+      <path>Aircraft/Aerostar-700/Sounds/alarm.wav</path>
+        <condition>
+			<and>
+				<not>
+					<property>instrumentation/annunciators/alarm-ack15</property>
+				</not>
+				<property>instrumentation/annunciators/indicator15</property>
+			</and>				
+		</condition>			
+      <volume>
+        <factor>1.0</factor>
+      </volume>
+      <reference-dist>100</reference-dist>
+           <max-dist>1000</max-dist>      
+    </stall>
+
+    <!-- Alarme Cabin Door -->
+
+    <stall>
+      <name>Alarme-cabin</name>
+      <mode>looped</mode>
+      <path>Aircraft/Aerostar-700/Sounds/alarm.wav</path>
+        <condition>
+			<and>
+				<not>
+					<property>instrumentation/annunciators/alarm-ack16</property>
+				</not>
+				<or>
+					<property>instrumentation/annunciators/indicator16</property>
+					<property>instrumentation/annunciators/test-btn</property>
+				</or>
+			</and>				
+		</condition>			
+      <volume>
+        <factor>1.0</factor>
+      </volume>
+      <reference-dist>100</reference-dist>
+           <max-dist>1000</max-dist>      
+    </stall>
+
+               <!--  BRAKES   -->
+
+        <brakes>
+            <name>brake-lever-off</name>
+            <mode>once</mode>
+            <path>Aircraft/Aerostar-700/Sounds/brake-lever.wav</path>
+            <condition>
+                <not>
+                    <property>controls/gear/brake-parking</property>
+                </not>
+            </condition>
+            <volume>
+                <property>sim/signals/fdm-initialized</property>
+            </volume>
+            <pitch>
+                <offset>0.8</offset>
+            </pitch>
+            <position>
+                <x>3</x>
+                <y>0</y>
+                <z>1</z>
+            </position>
+            <reference-dist>0.5</reference-dist>
+            <max-dist>1.0</max-dist>
+        </brakes>
+
+        <brakes>
+            <name>brake-lever-on</name>
+            <mode>once</mode>
+            <path>Aircraft/Aerostar-700/Sounds/brake-lever.wav</path>
+            <condition>
+                <and>
+                    <property>controls/gear/brake-parking</property>
+                    <value>0</value>
+                </and>
+            </condition>
+            <volume>
+                <property>sim/signals/fdm-initialized</property>
+            </volume>
+            <pitch>
+                <offset>0.8</offset>
+            </pitch>
+            <position>
+                <x>3</x>
+                <y>0</y>
+                <z>1</z>
+            </position>
+            <reference-dist>0.5</reference-dist>
+            <max-dist>1.0</max-dist>
+        </brakes>
+
+    </fx>
+ 
+</PropertyList>
